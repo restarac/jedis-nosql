@@ -24,6 +24,17 @@ public class CepDaoJedis implements CepDao {
 	@Inject
 	@CepConnection
 	private Jedis jedis;
+	
+	
+
+	public CepDaoJedis() {
+		super();
+	}
+
+	public CepDaoJedis(Jedis jedis) {
+		super();
+		this.jedis = jedis;
+	}
 
 	/**
 	 * A cada 50 inserts chama o comando para salvar o dataset, enquanto novos
@@ -103,6 +114,7 @@ public class CepDaoJedis implements CepDao {
 		if (cep == null || StringUtils.isBlank(cep.getCep())){
 			throw new IllegalStateException("Necesário um codigo de CEP");
 		}
+		
 		jedis.set(cep.getCep(), GSON.toJson(cep));
 	}
 
@@ -118,7 +130,16 @@ public class CepDaoJedis implements CepDao {
 	}
 
 	public Cep load(String cepNumber) {
-		String jsonCep = jedis.get(cepNumber);
-		return GSON.fromJson(jsonCep, Cep.class);
+		String cepJson = jedis.get(cepNumber);
+
+		if (cepJson != null) {
+			Cep cep = GSON.fromJson(cepJson, Cep.class);
+
+			if (cep != null) {
+				System.out.println("### Recuperado pelo REDIS!");
+				return cep;
+			}
+		}
+		return null;
 	}
 }

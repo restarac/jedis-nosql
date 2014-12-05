@@ -8,7 +8,8 @@ import redis.clients.jedis.Jedis;
 public class JedisConnectionProduces {
 
 	private static final int PORT = 6379;
-	private static final String HOST = "172.16.29.85";
+	private static final String HOST = "172.16.29.138";
+//	private static final String HOST = "10.0.2.15";
 
 	@Produces
 	@CepConnection

@@ -6,7 +6,7 @@
     <session-factory name="redisMysql">
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="hibernate.connection.password">123</property>
-        <property name="hibernate.connection.url">jdbc:mysql://192.186.1.115:3306/redis</property>
+        <property name="hibernate.connection.url">jdbc:mysql://172.16.29.138:3306/redis</property>
         <property name="hibernate.connection.username">root</property>
 <!--         <property name="hibernate.dialect">org.hibernate.dialect.MySQLInnoDBDialect</property> -->
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
